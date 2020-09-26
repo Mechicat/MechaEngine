@@ -11,5 +11,7 @@ struct windowsetup
 
 void ReadGameInfo(windowsetup &setup);
 
-bool SetupWindow(windowsetup &setup);
+SDL_Window *SetupWindow(windowsetup &setup);
+
+SDL_Renderer* SetupRenderer(SDL_Window *pWindow);
 

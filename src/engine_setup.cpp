@@ -1,5 +1,5 @@
 
-#include "window_setup.h"
+#include "engine_setup.h"
 #include <speedykv/KeyValue.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -7,7 +7,8 @@
 void ReadGameInfo(windowsetup &setup)
 {
     KeyValueRoot kv;
-    FILE* filp = fopen("cfg/gameinfo.txt", "r");
+    FILE* filp;
+    fopen_s(&filp, "cfg/gameinfo.txt", "r");
     char buf[1024];
 
     fread_s(buf, 1024, sizeof(char), 1024, filp);
@@ -40,27 +41,24 @@ void ReadGameInfo(windowsetup &setup)
     //setup.windowflags = atoi(kv["WindowFlags"].key.string);
 }
 
-bool SetupWindow(windowsetup &setup)
+SDL_Window *SetupWindow(windowsetup &setup)
 {
-    SDL_Window* window;
-    SDL_Renderer* renderer;
-    SDL_Surface* surface;
-    SDL_Texture* texture;
-    SDL_Event event;
 
     setup.windowflags = SDL_WINDOW_RESIZABLE;
 
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
         SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Couldn't initialize SDL: %s", SDL_GetError());
-        return false;
+        return NULL;
     }
 
-    if (SDL_CreateWindowAndRenderer(setup.xsize, setup.ysize, setup.windowflags, &window, &renderer)) {
-        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Couldn't create window and renderer: %s", SDL_GetError());
-        return false;
+    SDL_Window* window = SDL_CreateWindow(setup.windowtitle, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, setup.xsize, setup.ysize, setup.windowflags);
+    if (!window) {
+        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Couldn't create window: %s", SDL_GetError());
+        return NULL;
     }
+    return window;
 
-    surface = SDL_LoadBMP("sample.bmp");
+    /*surface = SDL_LoadBMP("sample.bmp");
     if (!surface) {
         SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Couldn't create surface from image: %s", SDL_GetError());
         return false;
@@ -69,7 +67,7 @@ bool SetupWindow(windowsetup &setup)
     if (!texture) {
         SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Couldn't create texture from surface: %s", SDL_GetError());
         return false;
-    }
+    }*/
     /*SDL_FreeSurface(surface);
 
     while (1) {
@@ -90,4 +88,22 @@ bool SetupWindow(windowsetup &setup)
     SDL_Quit();*/
 
     return 0;
+}
+
+
+SDL_Renderer* SetupRenderer(SDL_Window *pWindow)
+{
+    SDL_Renderer* renderer = SDL_CreateRenderer(pWindow, -1, 0);
+
+    //Set the draw color of renderer to white
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+
+    //Clear the renderer with the draw color
+    SDL_RenderClear(renderer);
+
+    //Update the renderer which will show the renderer cleared by the draw color which is green
+    SDL_RenderPresent(renderer);
+
+    return renderer;
+
 }

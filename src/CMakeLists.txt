@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 3.10)
 project(MechaEngine)
 
 # add the executable
-add_executable(MechaEngine main.cpp "window_setup.h" "libraries/speedykv/KeyValue.h" "libraries/speedykv/KeyValue.cpp" "window_setup.cpp")
+add_executable(MechaEngine main.cpp "engine_setup.h" "libraries/speedykv/KeyValue.h" "libraries/speedykv/KeyValue.cpp" "engine_setup.cpp")
 
 include_directories("${PROJECT_SOURCE_DIR}/libraries/")
 
