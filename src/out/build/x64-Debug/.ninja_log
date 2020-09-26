@@ -1,0 +1,13 @@
+# ninja log v5
+1	531	622778767	CMakeFiles/MechaEngine.dir/libraries/speedykv/KeyValue.cpp.obj	c7093077e3a822d7
+4	254	622779136	CMakeFiles/MechaEngine.dir/window_setup.cpp.obj	b688a832ad88cba5
+0	256	622779136	CMakeFiles/MechaEngine.dir/main.cpp.obj	83986a278a1c3074
+0	126	622779407	CMakeFiles/MechaEngine.dir/window_setup.cpp.obj	b688a832ad88cba5
+0	146	622779424	CMakeFiles/MechaEngine.dir/window_setup.cpp.obj	b688a832ad88cba5
+1	391	622780248	CMakeFiles/MechaEngine.dir/main.cpp.obj	83986a278a1c3074
+391	881	622780249	MechaEngine.exe	cdbdd55fb89e1357
+1	602	622781636	MechaEngine.exe	cdbdd55fb89e1357
+0	424	622782495	CMakeFiles/MechaEngine.dir/window_setup.cpp.obj	b688a832ad88cba5
+424	804	622782495	MechaEngine.exe	cdbdd55fb89e1357
+1	173	622782662	CMakeFiles/MechaEngine.dir/window_setup.cpp.obj	b688a832ad88cba5
+173	415	622782662	MechaEngine.exe	cdbdd55fb89e1357

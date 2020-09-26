@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="D:\Repositories\GitHub\MechaEngine\build\CMakeFiles\34603caa7d04c2e9fa9c63627f2b7d88\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{AC9E9B85-2790-3966-A324-DC58560B5229}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

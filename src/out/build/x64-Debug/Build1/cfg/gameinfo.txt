@@ -1,0 +1,3 @@
+WindowXSize 700
+WindowYSize 700
+WindowTitle bruh
