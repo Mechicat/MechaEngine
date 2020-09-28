@@ -14,8 +14,6 @@ int main()
 	ReadGameInfo(setup);
 	window = SetupWindow(setup);
     renderer = SetupRenderer(window);
-	printf("bruh!\n");
-
 
     //Create a renderer for the window created above, with the first display driver present
   //and with no additional settings

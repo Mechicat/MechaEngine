@@ -1,22 +1,27 @@
-
+#include "fileops.h"
 #include "engine_setup.h"
 #include <speedykv/KeyValue.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 void ReadGameInfo(windowsetup &setup)
 {
+    int len;
+    char* f = ReadFile("cfg/gameinfo.txt", len);
+
+
+
     KeyValueRoot kv;
-    FILE* filp;
-    fopen_s(&filp, "cfg/gameinfo.txt", "r");
-    char buf[1024];
-
-    fread_s(buf, 1024, sizeof(char), 1024, filp);
-
-    kv.Parse(buf);
+    KeyValueErrorCode error = kv.Parse(f);
+    if (error != KeyValueErrorCode::NO_ERROR)
+    {
+        printf("Failed parsing cfg/gameinfo.txt, error code %i", error);
+        abort();
+    }
     if (kv["WindowXSize"].IsValid())
     {
-        setup.xsize = atoi(kv["WindowXSize"].key.string);
+        setup.xsize = atoi(kv["WindowXSize"].value.string);
     }
     else
     {
@@ -24,19 +29,20 @@ void ReadGameInfo(windowsetup &setup)
     }
     if (kv["WindowYSize"].IsValid())
     {
-        setup.ysize = atoi(kv["WindowYSize"].key.string);
+        setup.ysize = atoi(kv["WindowYSize"].value.string);
     }
     else
     {
         setup.ysize = 480;
     }
+    
     if (kv["WindowTitle"].IsValid())
     {
-        setup.windowtitle = kv["WindowTitle"].key.string;
+        setup.windowtitle = strdup(kv["WindowTitle"].value.string);
     }
     else
     {
-        setup.windowtitle = "MechaEngine";
+        setup.windowtitle = "MechaEngine Default Title";
     }
     //setup.windowflags = atoi(kv["WindowFlags"].key.string);
 }
@@ -50,7 +56,6 @@ SDL_Window *SetupWindow(windowsetup &setup)
         SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Couldn't initialize SDL: %s", SDL_GetError());
         return NULL;
     }
-
     SDL_Window* window = SDL_CreateWindow(setup.windowtitle, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, setup.xsize, setup.ysize, setup.windowflags);
     if (!window) {
         SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Couldn't create window: %s", SDL_GetError());

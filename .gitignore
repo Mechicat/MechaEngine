@@ -7,3 +7,10 @@ src/.vs/src/v16/ipch/AutoPCH/3c14b275dea27df3/KEYVALUE.ipch
 src/.vs/src/v16/ipch/AutoPCH/4d9df69299f0c8d4/MAIN.ipch
 src/.vs/src/v16/ipch/AutoPCH/a03ebccb6111443f/WINDOW_SETUP.ipch
 src/.vs/src/v16/ipch/AutoPCH/adec916bb23fa93b/WINDOW_SETUP.ipch
+*.db
+*.ipch
+*.obj
+src/.vs/VSWorkspaceState.json
+src/out/build/x64-Debug/.cmake/api/v1/reply/codemodel-v2-dc4ba7c4ce0ae04b838f.json
+src/out/build/x64-Debug/.cmake/api/v1/reply/index-2020-09-27T23-04-54-0697.json
+src/out/build/x64-Debug/.cmake/api/v1/reply/target-MechaEngine-Debug-6cba39236cac14b44382.json
